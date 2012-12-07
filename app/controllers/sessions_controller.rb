@@ -5,12 +5,11 @@ class SessionsController < Devise::SessionsController
   	else
 	    logger.info "Attempt to sign in"
 	    super
-	end
+	 end
   end
+
   def destroy
     logger.info "#{ current_user.login } signed out"
     super
   end
-
-  
 end
