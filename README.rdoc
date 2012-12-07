@@ -6,8 +6,8 @@ Uses LDAP or AD to authenticate/create user accounts.
 Creates an account dynamically during signin and doesn't require signup.
 
 == Features
-Easy scheduling of meals
-Integration with holiday lists
-Payment gateway integration
-Support Meal transfer policy
-Manage Overall accounts.
+* Easy scheduling of meals
+* Integration with holiday lists
+* Payment gateway integration
+* Support Meal transfer policy
+* Manage Overall accounts.
