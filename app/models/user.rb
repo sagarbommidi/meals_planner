@@ -8,10 +8,15 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :password, :password_confirmation, :remember_me, :firstname
+  
+  private
+  
   def get_ldap_email
-        self.email = Devise::LdapAdapter.get_ldap_param(self.login, "mail")
-    end
-   def get_ldap_firstname
-        self.firstname = Devise::LdapAdapter.get_ldap_param(self.login, "firstname")
-    end
+    self.email = Devise::LdapAdapter.get_ldap_param(self.login, "mail")
+  end
+  
+  def get_ldap_firstname
+    self.firstname = Devise::LdapAdapter.get_ldap_param(self.login, "firstname")
+  end
+
 end
