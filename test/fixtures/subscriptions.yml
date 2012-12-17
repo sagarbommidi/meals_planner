@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: MyString
+  subscription_month: 2012-12-11
+  total_amount: 1
+  payment_status: MyString
+
+two:
+  user: MyString
+  subscription_month: 2012-12-11
+  total_amount: 1
+  payment_status: MyString

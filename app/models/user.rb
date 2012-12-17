@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   before_save :get_ldap_email
   before_save :get_ldap_firstname
   
+  has_many :subscription_types
+  has_many :subscriptions
+  has_many :daily_transfers
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :ldap_authenticatable, :rememberable, :trackable

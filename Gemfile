@@ -27,8 +27,10 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'net-ldap'
 gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
+gem 'fastercsv'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

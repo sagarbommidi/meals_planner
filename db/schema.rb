@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207052651) do
+ActiveRecord::Schema.define(:version => 20121211043353) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",               :default => "", :null => false
@@ -30,6 +30,40 @@ ActiveRecord::Schema.define(:version => 20121207052651) do
 
   add_index "admins", ["login"], :name => "index_admins_on_login", :unique => true
 
+  create_table "daily_transfers", :force => true do |t|
+    t.integer  "subscription_id"
+    t.date     "date"
+    t.integer  "lender_id"
+    t.integer  "borrower_id"
+    t.boolean  "payment_status",  :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "holidays", :force => true do |t|
+    t.date     "date"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "subscription_types", :force => true do |t|
+    t.date     "month"
+    t.integer  "number_of_days"
+    t.integer  "amount_per_day", :default => 45
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "subscription_type_id"
+    t.integer  "total_amount"
+    t.boolean  "payment_status",       :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",               :default => "", :null => false
     t.string   "encrypted_password",  :default => "", :null => false
@@ -43,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20121207052651) do
     t.datetime "updated_at",                          :null => false
     t.string   "login",               :default => "", :null => false
     t.string   "firstname"
+    t.integer  "subscription_id"
+    t.integer  "dailytransfer_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

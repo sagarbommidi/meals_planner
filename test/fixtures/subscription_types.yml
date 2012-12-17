@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  month: 2012-12-11
+  number_of_days: 1
+  amount_per_day: 1
+
+two:
+  month: 2012-12-11
+  number_of_days: 1
+  amount_per_day: 1
