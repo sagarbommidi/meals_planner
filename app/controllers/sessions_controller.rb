@@ -9,7 +9,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def destroy
-    logger.info "#{ current_user.login } signed out"
     super
   end
 end

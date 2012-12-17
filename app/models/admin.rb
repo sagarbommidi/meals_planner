@@ -6,7 +6,6 @@ class Admin < ActiveRecord::Base
 	devise :ldap_authenticatable, :rememberable, :trackable
 	attr_accessible :login, :password, :password_confirmation, :remember_me
 	
-	validate :check_admin, :on => :create
 	validates_presence_of :email
 
 	private

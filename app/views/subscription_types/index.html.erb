@@ -1,0 +1,36 @@
+<p>
+  <span class="label label-info">Info</span> Add new Sybscription Type
+</p>
+<div class="well">
+  <a href="#addSubType" data-toggle="modal" class="btn btn-success">Add Subscription Type</a>
+  <div style="float: right;">
+  </div>
+</div>
+
+<p style="margin-top: 50px;">
+  <span class="label label-info">Info</span> List of all Sybscription Types
+</p>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>No.of Days</th>
+      <th>Amount per Day</th>
+      <th>No of users subscribed</th>
+    </tr>
+  </thead>
+  <% @stypes.each do |type| %>
+    <tr>
+      <td><%= type.month %></td>
+      <td><%= type.number_of_days %></td>
+      <td>&#8377; <%= type.amount_per_day %></td>
+      <td><%= type.subscriptions.count %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<% content_for :popup do %>
+  <%= render :partial => "subscription_types/form" %>
+<% end %>

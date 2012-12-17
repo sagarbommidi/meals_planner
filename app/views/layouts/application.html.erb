@@ -23,17 +23,32 @@
               <%= render 'layouts/messages' %>
               <% if user_signed_in? %>
                 <div class="navbar-search pull-right">  
-                  <%= link_to "Home", user_path %> |          
+                  <%= link_to "Home", user_path %> | 
                   <%= link_to('My Active Subscriptions','#') %> |
                   <%= link_to('Subscribe Now','#') %> |
-                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>     
+                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
                 </div>
+              <% elsif admin_signed_in? %>
+                <row>
+                  <ul class="nav nav-pills">
+                    <li class="<%= params[:controller].eql?('subscription_types') ? '' : 'active' %>">
+                      <%= link_to 'Home', admins_path() %>
+                    </li>
+                    <li class="<%= params[:controller].eql?('subscription_types') ? 'active' : '' %>">
+                      <%= link_to 'Subscription Types', subscription_types_path() %>
+                    </li>
+                    <li class='pull-right'>
+                      <%= link_to 'Logout', destroy_admin_session_path, :method => :delete %>
+                    </li>
+                  </ul>
+                </row>
               <% end %> 
               <%= yield %>
             </div>
           </div>
           <footer>
           </footer>
+          <%= yield :popup %>
         </div>
       </div> 
     </div> 
