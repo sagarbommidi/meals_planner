@@ -1,12 +1,11 @@
-date,description
-14/01/2013,Pongal
-26/01/2013,Republic Day
-17/03/2013,Holi
-29/03/2013,Good Friday
-04/11/2013,Ugadi
-15/07/2013,Independence Day
-09/09/2013,Vinayakar chathurthi
-10/02/2013,Gandhi Jayanthi
-14/10/2012,Vijayadasami
-11/03/2013,Deepavali
-25/12/2013,Christmas
+date;description
+01/01/13;New Year
+14/01/2013;Pongal
+29/03/2013;Good Friday
+11/04/2013;Ugadi
+01/05/2013;May Day
+15/07/2013;Independence Day
+09/09/2013;Vinayakar chathurthi
+02/10/2013;Gandhi Jayanthi
+14/10/2012;Dussera
+25/12/2013;Christmas

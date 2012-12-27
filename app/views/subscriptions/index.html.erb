@@ -1,0 +1,21 @@
+<p style="margin-top: 50px;">
+  List of all Subscriptions:
+</p>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Total Amount</th>
+      <th>Subscription status</th>
+     
+    </tr>
+  </thead>
+  <% current_user.subscriptions.each do |subs| %>
+    <tr>
+      <td><%= subs.subscription_month %></td>
+      <td><%= subs.total_amount%></td>
+      <td><%= subs.subscription_status %></td>  
+    </tr>
+  <% end %>
+</table>

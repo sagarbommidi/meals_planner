@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211043353) do
+ActiveRecord::Schema.define(:version => 20121226100654) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",               :default => "", :null => false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20121211043353) do
     t.boolean  "payment_status",  :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.boolean  "booking_status"
   end
 
   create_table "holidays", :force => true do |t|
@@ -53,6 +54,11 @@ ActiveRecord::Schema.define(:version => 20121211043353) do
     t.integer  "amount_per_day", :default => 45
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "subscription_types_users", :id => false, :force => true do |t|
+    t.integer "subscription_type_id"
+    t.integer "user_id"
   end
 
   create_table "subscriptions", :force => true do |t|

@@ -1,7 +1,58 @@
-
 <div class = "container" >
-<h1> Welcome <%= current_user.firstname %> ! </h1>
-<p> This is an application for meals subscription <p>
+	<h1> Welcome <%= current_user.firstname %> ! </h1>
+</div>
+<p> Here is your one-step monthly meals subscription application</p>
 
-<%= render 'layouts/welcome' %>
+<h4> Add new Subscription </h4>
+
+<div class = "well" id="subscription-container">
+	<% if @current_subscription %>
+		<h3>Here is your remaining subscription days </h3>
+	<% else %>
+		<h4>You haven't subscribed for this month. Please subscribe atleast for next month</h4> <br />
+	<% end %>
+
+	<% unless @next_subscription.new_record? %>
+		<% if @next_subscription.payment_status == false %>
+			<h4> Please pay in order to confirm your subscription for next month </h4>
+		<% else %>
+			<h4>Your subscription for next month is active</h4>
+		<% end %>
+	<% else %> 
+		<%= form_for (@next_subscription), :html => {:method => :post, :class => "form-horizontal modal-form", :remote => true} do |f| %>
+	  	<%= f.hidden_field :subscription_type_id, :value => @s_type_next.id %>
+	  	<%= f.hidden_field :user_id, :value => current_user.id %>
+	  	<%= f.hidden_field :total_amount, :value => @s_type_next.amount_per_day * @s_type_next.number_of_days %>
+	    <p> Subscription Month: <%= @s_type_next.month %></p> 
+	    <p> Total Amount: <%= @s_type_next.amount_per_day * @s_type_next.number_of_days %> </p> 
+	    <%= f.submit "Subscribe", :class => "btn btn-primary" %>
+		<% end %>
+	<% end %>
+</div>
+
+<div class = "well">
+  <%= render :partial => "users/transfer_details" %>
+</div>
+<div class = "well">
+	<p style="margin-top: 50px;">
+	  List of all Subscriptions:
+	</p>
+
+	<table class="table table-bordered table-hover">
+	  <thead>
+    	<tr>
+	      <th>Month</th>
+      	<th>Total Amount</th>
+      	<th>Payment status</th>    
+    	</tr>
+  	</thead>
+
+ 	<% current_user.subscriptions.each do |subs| %>
+    <tr>
+      <td><%= @s_type_next.month  %></td>
+      <td><%= subs.total_amount%></td>
+      <td><%= subs.payment_status%></td>  
+    </tr>
+  <% end %>
+</table>
 </div>
