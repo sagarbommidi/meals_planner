@@ -1,7 +1,8 @@
 class Subscription < ActiveRecord::Base
+  require 'workingdays'
 	belongs_to :user
 	belongs_to :subscription_type
-	has_many :daily_transfers
+	has_many :daily_transfers, :dependent => :destroy
   attr_accessible :payment_status, :subscription_month, :total_amount, :user_id, :subscription_type_id
 
   before_create :update_associations

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226100654) do
+ActiveRecord::Schema.define(:version => 20130103072124) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",               :default => "", :null => false
@@ -38,7 +38,8 @@ ActiveRecord::Schema.define(:version => 20121226100654) do
     t.boolean  "payment_status",  :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
-    t.boolean  "booking_status"
+    t.boolean  "booking_status",  :default => false
+    t.string   "borrower_name"
   end
 
   create_table "holidays", :force => true do |t|
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20121226100654) do
     t.string   "firstname"
     t.integer  "subscription_id"
     t.integer  "dailytransfer_id"
+    t.string   "fullname"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
