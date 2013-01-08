@@ -1,6 +1,6 @@
 <% if @transfer.valid? %>
 <% content = escape_javascript(render :partial => 'users/transfer_details') %>
-$('#transfer-container').html('<%= content %>')
+$('#update_payment').html('<%= content %>')
 <% else %>
-$('#transfer-container').prepend('<p> Did not receive </p>')
+$('#update_payment').prepend('<p> Could not receive </p>')
 <% end %>

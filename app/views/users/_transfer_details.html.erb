@@ -39,13 +39,15 @@
 		<% if current_user.transfered_today_meal? %>
 			<h4>You have transfered your meal for today...</h4>	
       <div id = "update_payment">
-      <% if current_user.get_todays_transfer.payment_status == false %>
+      <% if current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == false %>
         <b><%= current_user.get_borrower_name %></b> wants to borrow your meal for today.
         <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
           <%= submit_tag "Received Payment", :class => "btn btn-success" %> 
         <% end %>
+      <% elsif current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == true %>
+          <b> You have transfered your meal to <%= current_user.get_borrower_name %></b>
       <% else %>
-        <b> You have transfered your meal to <%= current_user.get_borrower_name %></b>
+        <p> Sorry ! there are no borrowers for your meal today </p>  
       <% end %>
     </div>
 		<% else %>
