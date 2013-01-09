@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_save :get_ldap_email
   before_save :get_ldap_firstname
   before_save :get_ldap_fullname
-  
+
   has_and_belongs_to_many :subscription_types
   has_many :subscriptions, :dependent => :destroy
   has_many :daily_transfers, :foreign_key => :lender_id, :dependent => :destroy
@@ -26,11 +26,15 @@ class User < ActiveRecord::Base
   end
 
   def current_subscription
-    subscriptions.where(:subscription_type_id => SubscriptionType.current_subscription_type.id).first
+    subscr_type = SubscriptionType.current_subscription_type
+    return nil if subscr_type.nil?
+    subscriptions.where(:subscription_type_id => subscr_type.id).first
   end
 
   def next_subscription
-    subscriptions.where(:subscription_type_id => SubscriptionType.next_subscription_type.id).first
+    subscr_type = SubscriptionType.next_subscription_type
+    return nil if subscr_type.nil?
+    subscriptions.where(:subscription_type_id => subscr_type.id).first
   end
 
   def transfered_today_meal?
@@ -52,11 +56,11 @@ class User < ActiveRecord::Base
 
 
   private
-  
+
   def get_ldap_email
     self.email = Devise::LdapAdapter.get_ldap_param(self.login, "mail")
   end
-  
+
   def get_ldap_firstname
     self.firstname = Devise::LdapAdapter.get_ldap_param(self.login, "firstname")
   end

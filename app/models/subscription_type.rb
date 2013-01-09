@@ -1,5 +1,6 @@
+require 'workingdays'
+
 class SubscriptionType < ActiveRecord::Base
-  require 'workingdays'
 	has_and_belongs_to_many :users
 	has_many :subscriptions
   attr_accessible :amount_per_day, :month, :number_of_days
@@ -15,7 +16,7 @@ class SubscriptionType < ActiveRecord::Base
  	end
 
 	def self.remaining_days
-    remaining_days = WorkingDays.calculatingworkingdaysbetween(Date.today,Date.civil(Date.today.year, Date.today.month, -1))  
+    remaining_days = WorkingDays.calculatingworkingdaysbetween(Date.today,Date.civil(Date.today.year, Date.today.month, -1))
   end
 
 end
