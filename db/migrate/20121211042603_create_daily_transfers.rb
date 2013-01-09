@@ -8,7 +8,7 @@ class CreateDailyTransfers < ActiveRecord::Migration
       t.boolean :payment_status, :default => false
 
       t.timestamps
-      add_index :daily_transfers, :date
     end
+    add_index :daily_transfers, :date
   end
 end

@@ -7,8 +7,7 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.boolean :payment_status, :default => false
 
       t.timestamps
-
-       add_index :subscriptions, :user_id
     end
+    add_index :subscriptions, :user_id
   end
 end

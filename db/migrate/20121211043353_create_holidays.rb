@@ -5,8 +5,7 @@ class CreateHolidays < ActiveRecord::Migration
       t.string :description
 
       t.timestamps
-
-      add_index :holidays, :date
     end
+    add_index :holidays, :date
   end
 end

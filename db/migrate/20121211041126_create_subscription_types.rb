@@ -6,8 +6,8 @@ class CreateSubscriptionTypes < ActiveRecord::Migration
       t.integer :amount_per_day, :default => 45
 
       t.timestamps
-
-      add_index :subscription_types, :month
     end
+
+    add_index :subscription_types, :month
   end
 end
