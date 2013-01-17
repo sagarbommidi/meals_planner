@@ -1,17 +1,18 @@
-<div class = "container">
-<h3> My Subscriptions </h3>
-
+<div class = "well">
+  <p style="margin-top: 50px;">
+    List of all Subscriptions:
+  </p>
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Month</th>
         <th>Total Amount</th>
-        <th>Payment Status</th>
+        <th>Payment status</th>
       </tr>
     </thead>
   <% current_user.subscriptions.all.each do |subs| %>
     <tr>
-      <td><%= subs.subscription_type.month.strftime('%B %Y') %></td>
+      <td><%= subs.subscription_type.month  %></td>
       <td><span class="WebRupee">Rs. </span><%= subs.total_amount%></td>
       <% if subs.payment_status == false %>
         <td> Not paid </td>

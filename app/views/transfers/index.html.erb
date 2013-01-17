@@ -1,0 +1,27 @@
+<div class = "container">
+  <h3> My Transfers </h3>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Borrower Name</th>
+        <th>Payment status</th>
+      </tr>
+    </thead>
+  <% current_user.daily_transfers.all.each do |dt| %>
+    <tr>
+      <td><%= dt.date  %></td>
+      <% if dt.booking_status == false %>
+        <td> None </td>
+      <% else %>
+        <td><%= dt.borrower_name %> </td>
+      <% end %>
+      <% if dt.payment_status == false %>
+        <td> Not paid </td>
+        <% else %>
+        <td> Paid </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+</div>

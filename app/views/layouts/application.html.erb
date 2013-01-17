@@ -16,34 +16,15 @@
   </head>
   <body>
     <div id="main" role="main">
-      <div class="container">
-        
+      <div class="container">  
         <div class="content">
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
-              <% if user_signed_in? %>
-                <row>
-                  <ul class="nav nav-pills"> 
-                    <li>
-                      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-                    </li>
-                  </ul>
-                </row>
+              <% if user_signed_in? %>  
+                <%= render 'layouts/usernavigation' %>
               <% elsif admin_signed_in? %>
-                <row>
-                  <ul class="nav nav-pills">
-                    <li class="<%= params[:controller].eql?('subscription_types') ? '' : 'active' %>">
-                      <%= link_to 'Home', admins_path() %>
-                    </li>
-                    <li class="<%= params[:controller].eql?('subscription_types') ? 'active' : '' %>">
-                      <%= link_to 'Subscription Types', subscription_types_path() %>
-                    </li>
-                    <li class='pull-right'>
-                      <%= link_to 'Logout', destroy_admin_session_path, :method => :delete %>
-                    </li>
-                  </ul>
-                </row>
+                <%= render 'layouts/adminnavigation' %>
               <% end %> 
               <%= yield %>
             </div>

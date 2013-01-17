@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130103072124) do
+ActiveRecord::Schema.define(:version => 20130115071459) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",               :default => "", :null => false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130103072124) do
     t.datetime "updated_at",                          :null => false
     t.string   "login",               :default => "", :null => false
     t.string   "firstname"
+    t.string   "fullname"
   end
 
   add_index "admins", ["login"], :name => "index_admins_on_login", :unique => true
@@ -42,16 +43,12 @@ ActiveRecord::Schema.define(:version => 20130103072124) do
     t.string   "borrower_name"
   end
 
-  add_index "daily_transfers", ["date"], :name => "index_daily_transfers_on_date"
-
   create_table "holidays", :force => true do |t|
     t.date     "date"
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
-
-  add_index "holidays", ["date"], :name => "index_holidays_on_date"
 
   create_table "subscription_types", :force => true do |t|
     t.date     "month"
@@ -60,8 +57,6 @@ ActiveRecord::Schema.define(:version => 20130103072124) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
-
-  add_index "subscription_types", ["month"], :name => "index_subscription_types_on_month"
 
   create_table "subscription_types_users", :id => false, :force => true do |t|
     t.integer "subscription_type_id"
@@ -76,8 +71,6 @@ ActiveRecord::Schema.define(:version => 20130103072124) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
   end
-
-  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",               :default => "", :null => false

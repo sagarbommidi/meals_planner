@@ -8,7 +8,7 @@
 </div>
 
 <p style="margin-top: 50px;">
-  <span class="label label-info">Info</span> List of all Sybscription Types
+  <span class="label label-info">Info</span> List of all Subscription Types
 </p>
 
 <table class="table table-bordered table-hover">
@@ -22,7 +22,7 @@
   </thead>
   <% @stypes.each do |type| %>
     <tr>
-      <td><%= type.month %></td>
+      <td><%= type.month.strftime('%B %Y') %></td>
       <td><%= type.number_of_days %></td>
       <td>&#8377; <%= type.amount_per_day %></td>
       <td><%= type.subscriptions.count %></td>

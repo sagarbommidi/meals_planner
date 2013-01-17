@@ -1,15 +1,12 @@
 <div class = "container" >
-
-<h1>Welcome to the Meals Planner</h1>
- 
-<div class="btn-group">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu">
-    <li> Admin </li>
-    <li> Employee </li>
-  </ul>
-</div> 
-
+  <h1>Welcome to the Meals Planner</h1>
+  <div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to('Admin',"admins/sign_in", :method => :get) %> </li>
+      <li><%= link_to ('Employee',"/users/sign_in", :method => :get) %> </li>
+    </ul>
+  </div> 
 </div>

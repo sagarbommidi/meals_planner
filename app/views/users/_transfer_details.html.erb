@@ -1,66 +1,25 @@
-<div class = "container-fluid well" >
-  <div style = "float:right">
-    <h5> Today's Transfers </h5>
-     <p> Date:<%= Date.today %></p>
-    <table class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Lender</th>
-          <th>Booking Status</th> 
-          <th>Borrowed By </th>  
-        </tr>
-      </thead>
-
-      <% DailyTransfer.todays_transfer.all.each do |t| %>
-        <tr>
-          <td><%= t.user.fullname %></td>
-          <% if t.booking_status == false %>
-            <td> Available </td>
-            <% if current_user.has_currently_subscribed? # %>
-              <td> You cannot Borrow </td>
-            <% elsif current_user.has_borrowed_today? %>
-              <td> You already Borrowed</td>
-            <% else %>
-              <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
-                    <%= submit_tag "Borrow", :class => "btn btn-success" %> 
-                  <% end %>
-              </td>
-            <% end %>
-          <% else %>
-            <td> Booked </td>
-            <td> <%= t.borrower_name %> </td>
-          <% end %> 
-        </tr>
-      <% end %>
-    </table>
-  </div>
-
-  <% if @current_subscription %>
-		<% if current_user.transfered_today_meal? %>
-			<h4>You have transfered your meal for today...</h4>	
-      <div id = "update_payment">
+<div class = "well" >
+  <% if current_user.transfered_today_meal? %>
+		<h4>You have transfered your meal for today...</h4>	
+    <div id = "update_payment">
       <% if current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == false %>
         <b><%= current_user.get_borrower_name %></b> wants to borrow your meal for today.
         <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
           <%= submit_tag "Received Payment", :class => "btn btn-success" %> 
-        <% end %>
+          <% end %>
       <% elsif current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == true %>
-          <b> You have transfered your meal to <%= current_user.get_borrower_name %></b>
+          <b> Your meal has been transfered to <%= current_user.get_borrower_name %><b>
       <% else %>
         <p> Sorry ! there are no borrowers for your meal today </p>  
       <% end %>
     </div>
-		<% else %>
-			<h4>Want to transfer today's meal?</h4>  
-			<%= form_tag transfers_path(), :method => :post, :class => "form-horizontal modal-form", :remote => true do %>
-        <%= hidden_field_tag :subscription_id, current_user.next_subscription.id %>
-        <%= hidden_field_tag :lender_id, current_user.id %>
-        <%= hidden_field_tag :date, Date.today %>
-        <%= submit_tag "Transfer", :class => "btn btn-success" %>
-
+	<% else %>
+		<h4>Want to transfer today's meal?</h4>  
+		<%= form_tag transfers_path(), :method => :post, :class => "form-horizontal modal-form", :remote => true do %>
+      <%= hidden_field_tag :subscription_id, current_user.next_subscription.id %>
+      <%= hidden_field_tag :lender_id, current_user.id %>
+      <%= hidden_field_tag :date, Date.today %>
+      <%= submit_tag "Transfer", :class => "btn btn-success" %>
       <% end %>
-		<% end %>
-  <% else %>
-    <h4>Want to borrow meal for today?</h4>
-  <% end %>
+	<% end %>
 </div>
