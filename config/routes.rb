@@ -4,6 +4,7 @@ Meal::Application.routes.draw do
   resources :admins
   resources :subscription_types
   resources :subscriptions
+  resources :holidays
 
   devise_for :users, :controllers => { :sessions => :sessions }
   resources :users
@@ -15,4 +16,6 @@ Meal::Application.routes.draw do
   devise_scope :user do
     root to: "devise/sessions#new"
   end
+
+  match '/home' => "users#show"
 end
