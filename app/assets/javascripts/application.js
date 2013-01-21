@@ -21,3 +21,7 @@ $(document).ready(function(){
     dateFormat: 'dd/mm/yy'
   });
 });
+
+$(function () {
+        $("[rel='tooltip']").tooltip();
+});

@@ -1,8 +1,7 @@
-<h4> Today's Transfers </h4>
+<h4> Today's Transfers  (<%= Date.today.strftime('%d %B %Y') %>)  </h4>
 <% if !current_user.has_currently_subscribed? %>
   <h6> You can borrow any of the available meals transferred by the subscribers </h6>
 <% end %>
-<p> Date: <%= Date.today %></p>
 <table class="table table-bordered table-hover">
   <thead>
     <tr>
@@ -11,7 +10,7 @@
       <th>Borrowed By </th>  
     </tr>
   </thead>
-  <% DailyTransfer.todays_transfer.all.each do |t| %>
+  <% DailyTransfer.todays_transfer.order("booking_status").all.each do |t| %>
     <tr>
       <td><%= t.user.fullname %></td>
       <% if t.booking_status == false %>
