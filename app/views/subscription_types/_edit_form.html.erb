@@ -1,0 +1,35 @@
+<form id="stype-form-<%= stype.id %>">
+  <td>    
+    <input class="uneditable-input" id="date-field-<%= stype.id %>" name="subscription_type[month]" type="text" value='<%= I18n.localize(stype.month, :format => "%d-%m-%Y") %>'/>
+  </td>
+  <td>
+    <input name="subscription_type[number_of_days]" type="text" value="<%= stype.number_of_days %>" />
+  </td>
+  <td>
+    <input name="subscription_type[amount_per_day]" type="text" value="<%= stype.amount_per_day %>" />
+  </td>
+  <td><%= stype.subscriptions.count %></td>
+  <td>
+    <input class="btn btn-primary" id="stype-update-<%= stype.id %>" name="commit" type="submit" value="Update" />
+    <a href="javascript:void(0)" class="btn cancel-update">Cancel</a>
+  </td>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.cancel-update').live('click', function(){
+    $('.stype-form').hide();
+    $('.stype-row').show();
+  });
+
+  $('#stype-update-' + '<%= stype.id %>').live('click', function(){
+    $.ajax({
+      type: "PUT",
+      dataType: "script",
+      url: '<%= subscription_type_path(stype) %>',
+      data: $('#stype-form-' + '<%= stype.id %>').serialize()
+    });
+    return false;
+  });
+});
+</script>

@@ -7,11 +7,14 @@
     <a class="brand" href="#" style = "margin-left:10px"> MEALS PLANNER </a>
     <div class="nav-collapse collapse">
       <ul class="nav" style = "width:1035px;">
-        <li class="<%= params[:controller].eql?('subscription_types') ? '' : 'active' %>">
+        <li class="<%= ['subscription_types', 'holidays'].include?(params[:controller]) ? '' : 'active' %>">
           <%= link_to 'Home', admins_path() %> 
         </li>
         <li class="<%= params[:controller].eql?('subscription_types') ? 'active' : '' %>">
           <%= link_to 'Subscription Types', subscription_types_path() %>
+        </li>
+        <li class="<%= params[:controller].eql?('holidays') ? 'active' : '' %>">
+          <%= link_to 'Holidays', holidays_path() %>
         </li>
         <li style="float:right">
           <%= link_to 'Logout', destroy_admin_session_path, :method => :delete %>

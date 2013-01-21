@@ -1,0 +1,30 @@
+<form id="holiday-form-<%= holiday.id %>">
+<td>
+  <input type="text" id='<%= "date-field-#{holiday.id}" %>' value='<%= I18n.localize(holiday.date, :format => "%d-%I-%Y") %>'  name="holiday[date]"/>
+</td>
+<td>
+  <input type="text" name="holiday[description]" value='<%= holiday.description %>' />
+</td>
+<td>
+  <input type='button' value="Update" class="btn btn-success" id="holiday-update-<%= holiday.id %>"/>
+  <a href="javascript:void(0)" class="btn cancel-update">Cancel</a>
+</td>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.cancel-update').live('click', function(){
+    $('.holiday-form').hide();
+    $('.holiday-row').show();
+  });
+  
+  $('#holiday-update-' + '<%= holiday.id %>').live('click', function(){
+    $.ajax({
+      type: "PUT",
+      dataType: "script",
+      url: '<%= holiday_path(holiday) %>',
+      data: $('#holiday-form-' + '<%= holiday.id %>').serialize()
+    })
+  });
+});
+</script>

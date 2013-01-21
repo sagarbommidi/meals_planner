@@ -1,0 +1,26 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>No.of Days</th>
+      <th>Amount per Day</th>
+      <th>No of users subscribed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <% stypes.each do |type| %>
+    <tr id='<%= "stype-row-#{type.id}" %>' class="stype-row">
+      <td><%= I18n.localize(type.month, :format => "%B-%Y") %></td>
+      <td><%= type.number_of_days %></td>
+      <td>&#8377; <%= type.amount_per_day %></td>
+      <td><%= type.subscriptions.count %></td>
+      <td>
+        <%= link_to "Edit", edit_subscription_type_path(type), :class => 'btn btn-success', :remote => true %>
+        <%= link_to "Delete", subscription_type_path(type), :class => 'btn btn-danger', :method => :delete, :remote => true, :confirm => "Are you sure to delete?" %>
+      </td>
+    </tr>
+    <tr id='<%= "stype-#{type.id}-form" %>' style="display: none;" class="stype-form">
+      <%= render :partial => "subscription_types/edit_form", :locals => {:stype => type} %>
+    </tr>
+  <% end %>
+</table>
