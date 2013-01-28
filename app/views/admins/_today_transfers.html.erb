@@ -1,0 +1,21 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Lender</th>
+      <th>Booking Status</th> 
+      <th>Borrowed By </th>  
+    </tr>
+  </thead>
+  <% @todays_transfers.each do |transfer| %>
+    <tr>
+      <td><%= transfer.user.fullname %></td>
+      <% if transfer.booking_status == false %>
+        <td> Available </td>
+        <td></td>
+      <% else %>
+        <td> Booked </td>
+        <td> <%= transfer.borrower_name %> </td>
+      <% end %> 
+    </tr>
+  <% end %>
+</table>

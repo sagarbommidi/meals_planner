@@ -2,3 +2,39 @@
   <h3>Welcome To Meals Planer</h3>
   <p>This is Admin section for Meals-Planner, where the admin can track all the list of SubscriptionTypes, all the list of users who subscribed for a particular Subscription type.</p>
 </div>
+
+<div class="well">
+  <strong>Select Subscription Type in the select box to get the statistics.</strong>
+  <div class="btn-group pull-right">
+    <a class="btn dropdown-toggle btn-success stype-select-container" data-toggle="dropdown" href="#">
+      <span id="stype-title">Subscription Type</span>
+      <span class="caret pull-right"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <% @stypes.each do |type| %>
+        <li>
+          <%= link_to I18n.localize(type.month, :format => "%B-%Y"), filter_subscriptions_subscription_type_path(type), :class => "stype-list", :tabindex => "-1", :remote => true %>
+        </li>
+      <% end %>      
+        <li class="divider"></li>
+    </ul>
+  </div>
+</div>
+
+<div id="stype-container">
+  <%= render :partial => "admins/subscription_list", :locals => {:subscription_type => @current_subscription_type} %>
+</div>
+
+<p>
+  <span class="label label-info">Info</span> Today's Transfers  (<%= I18n.localize(Date.today, :format => '%d %B %Y') %>)
+</p>
+<%= render :partial => "admins/today_transfers" %>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".stype-list").live("click", function(){
+    $("#stype-title").text($(this).text());
+  });
+});
+</script>
