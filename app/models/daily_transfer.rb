@@ -6,7 +6,7 @@ class DailyTransfer < ActiveRecord::Base
                   :subscription_id, :booking_status, :borrower_name
 
   def self.todays_transfer
-    where("date = ?", Date.today)
+    where(:date => Date.today).order(:booking_status)
   end
 
 

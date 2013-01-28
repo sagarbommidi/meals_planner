@@ -1,4 +1,5 @@
 class SubscriptionTypesController < ApplicationController
+  before_filter :authenticate_admin!, :only => [:filter_subscriptions]
 
   def create
     @s_type = SubscriptionType.new(params[:subscription_type])
@@ -25,6 +26,10 @@ class SubscriptionTypesController < ApplicationController
     type = SubscriptionType.find(params[:id])
     type.destroy
     get_stypes
+  end
+
+  def filter_subscriptions
+    @s_type = SubscriptionType.find(params[:id])
   end
 
   private

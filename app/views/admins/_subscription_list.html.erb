@@ -1,0 +1,26 @@
+<p>
+  <span class="label label-info">Info</span> <%= type_name = I18n.localize(subscription_type.month, :format => "%B-%Y") %> Subscriptions
+</p>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>User</th>
+      <th>Payment Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% subscription_type.subscriptions.each do |subscription| %>
+      <tr>
+        <td><%= type_name  %></td>
+        <td><%= subscription.user.fullname %></td>
+        <td><%= payment_status(subscription) %></td>
+        <td>
+          <% unless subscription.payment_status %>
+            <%= link_to "Payment Recieved", update_payment_status_subscriptions_path(:id => subscription.id, :s_type_id => subscription_type.id), :method => :put, :class => "btn btn-success", :remote => true %>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    resource.is_a?(Admin) ? admins_path(current_admin) : home_path
+    resource.is_a?(Admin) ? admins_path(:id => current_admin.id) : home_path
   end
 
   def after_sign_out_path_for(resource)
