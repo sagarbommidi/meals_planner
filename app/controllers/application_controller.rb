@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   end
   protect_from_forgery
 
+  layout :layout_by_resource
+
   protected
 
   def after_sign_in_path_for(resource)
@@ -13,4 +15,13 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     root_path
   end
+
+  def layout_by_resource
+    if devise_controller?
+      "home"
+    else
+      "application"
+    end
+  end
+    
 end
