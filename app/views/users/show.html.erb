@@ -8,9 +8,10 @@
       <%= render :partial => "users/transfer_details" %>
     </div>
   <% end %>
+  <h4> Today's Transfers  (<%= Date.today.strftime('%d %B %Y') %>)  </h4>
   <div class = "well" >
     <% if DailyTransfer.todays_transfer.empty? %>
-      <h4>Sorry ! there are no transfers today </h4>
+      <h5>Sorry ! there are no transfers today </h5>
     <% else %>
       <div id="today_transfer" %>
         <%= render :partial => "users/todays_transfers" %>
