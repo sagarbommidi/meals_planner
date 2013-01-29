@@ -1,7 +1,7 @@
 <div class = "well" >
   <% if current_user.transfered_today_meal? %>
-		<h4>You have transfered your meal for today...</h4>	
     <div id = "update_payment">
+		<h4>You have transfered your meal for today...</h4>	
       <% if current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == false %>
         <b><%= current_user.get_borrower_name %></b> wants to borrow your meal for today.
         <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>

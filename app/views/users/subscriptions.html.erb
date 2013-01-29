@@ -13,7 +13,7 @@
   <% current_user.subscriptions.all.each do |subs| %>
     <tr>
       <td><%= subs.subscription_type.month  %></td>
-      <td><span class="WebRupee">Rs. </span><%= subs.total_amount%></td>
+      <td>&#x20B9; <%= subs.total_amount%></td>
       <% if subs.payment_status == false %>
         <td> Not paid </td>
         <% else %>

@@ -1,2 +1,2 @@
 <% content = escape_javascript(render :partial => 'users/transfer_details') %>
-$('#transfer-container').html()
+$('#transfer-container').html('<%= content %>')

@@ -1,47 +1,20 @@
 <div class = "container" >
   <h4> Meals subscription status </h4>
   <div class = "well" id="subscription-container">
-    <% if @current_subscription %> 
-      <h5>Your subscription for <%= @current_subscription.subscription_type.month.strftime('%B %Y')%> is active</h5>
-    <% else %>
-      <h5> You haven't subscribed for <%= Date.today.strftime('%B %Y') %> </h5>
-	   <% end %>
-	   <% if !@next_subscription.new_record? %>
-		  <% if @next_subscription.payment_status == false %>
-        <div class="alert alert-block">
-          <h4>Warning!</h4>
-          Your subscription is not yet confirmed!!!
-        </div>
-			 <h5>Please pay  <span class="WebRupee"> Rs. </span><%= @next_subscription.total_amount %> to confirm your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%></h5>
-      <!-- <button class="btn btn-success" onclick ='alert("Please pay to Mr.Murari Rao")'>Pay by Cash </button>  -->
-      <a class = "btn btn-success" href = "#" rel = "tooltip" title = "Please pay to Mr. Murari Rao" onclick ='alert("Please pay to Mr.Murari Rao")' > Pay by cash </a> 
-      <button class="btn btn-success"disabled>Pay Online</button>
-		  <% else %>
-			 <h5>Your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%> is active</h5>
-		  <% end %>
-    <% elsif @s_type_next %>
-      <h5> Subscribe for <%= Date.today.next_month.strftime('%B %Y') %> </h5>
-		  <%= form_for (@next_subscription), :html => {:method => :post, :class => "form-horizontal modal-form", :remote => true} do |f| %>
-	  	  <%= f.hidden_field :subscription_type_id, :value => @s_type_next.id %>
-	  	  <%= f.hidden_field :user_id, :value => current_user.id %>
-	  	  <%= f.hidden_field :total_amount, :value => @s_type_next.amount_per_day * @s_type_next.number_of_days %>
-	      <p> Total Amount:<span class="WebRupee"> Rs. </span><%= @s_type_next.amount_per_day * @s_type_next.number_of_days %> </p>
-	      <%= f.submit "Subscribe", :class => "btn btn-success" %>
-		  <% end %>
-    <% else %>
-      <h5> Sorry.. the planner is not ready with the subscription for <%= Date.today.next_month.strftime('%B %Y') %>  </h5> 
-	 <% end %>
+    <%= render :partial => "users/subscription_status" %>
   </div>
   <% if @current_subscription %>
-  <div id="transfer-container">
-    <%= render :partial => "users/transfer_details" %>
-  </div>
+    <div id="transfer-container">
+      <%= render :partial => "users/transfer_details" %>
+    </div>
   <% end %>
   <div class = "well" >
     <% if DailyTransfer.todays_transfer.empty? %>
       <h4>Sorry ! there are no transfers today </h4>
     <% else %>
-      <%= render :partial => "users/todays_transfers" %>
+      <div id="today_transfer" %>
+        <%= render :partial => "users/todays_transfers" %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -1,3 +1,2 @@
-<% if @subscription.valid? %>
-$('#subscription-container').html('Your subscription has recieved successfully.')
-<% end %>
+<% content = escape_javascript(render :partial => 'users/subscription_status') %>
+$('#subscription-container').html('<%= content %>')

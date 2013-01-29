@@ -23,5 +23,5 @@ $(document).ready(function(){
 });
 
 $(function () {
-        $("[rel='tooltip']").tooltip();
+  $("[rel='tooltip']").tooltip();
 });
