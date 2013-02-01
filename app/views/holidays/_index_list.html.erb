@@ -8,7 +8,7 @@
   </thead>
   <% @holidays.each do |holiday| %>
     <tr id='<%= "holiday-row-#{holiday.id}" %>' class="holiday-row">
-      <td><%= I18n.localize(holiday.date, :format => "%d-%I-%Y") %></td>
+      <td><%= I18n.localize(holiday.date, :format => "%d-%m-%Y") %></td>
       <td><%= holiday.description %></td>
       <td>
         <%= link_to "Edit", edit_holiday_path(holiday), :class => "btn btn-success", :remote => true  %>

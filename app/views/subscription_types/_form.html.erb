@@ -35,3 +35,20 @@
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){  
+  $("#subscription_type_month").live ("change", function(){   
+    var date = Date.parse($(this).val());
+    if (date === NaN)
+      $("#subscription_type_number_of_days").val('0');
+    else
+      $.ajax({
+        type: "GET",
+        dataType: "script",
+        url: '<%= working_days_in_month_subscription_types_path() %>',
+        data: { date: $(this).val() },
+      })
+  });
+});
+</script>

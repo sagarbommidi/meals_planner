@@ -32,6 +32,10 @@ class SubscriptionTypesController < ApplicationController
     @s_type = SubscriptionType.find(params[:id])
   end
 
+  def working_days_in_month
+    @no_of_days = SubscriptionType.working_days_in_month(params[:date])
+  end
+
   private
 
   def get_stypes

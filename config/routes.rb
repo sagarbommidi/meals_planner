@@ -6,6 +6,9 @@ Meal::Application.routes.draw do
     member do
       get :filter_subscriptions
     end
+    collection do
+      get :working_days_in_month
+    end
   end
   resources :subscriptions do
     collection do
