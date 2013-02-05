@@ -1,0 +1,1 @@
+$('#subscription_type_number_of_days').val('<%= @no_of_days %>')

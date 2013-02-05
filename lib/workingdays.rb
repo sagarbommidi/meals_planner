@@ -14,7 +14,6 @@ module WorkingDays
 				workdays += 1 if (1..5).include?(day.wday)
 			end
 		end
-
-		puts workdays
+		workdays
 	end
 end
