@@ -24,12 +24,14 @@
             <%= link_to I18n.localize(type.month, :format => "%B-%Y"), filter_subscriptions_subscription_type_path(type), :class => "stype-list", :tabindex => "-1", :remote => true %>
           </li>
         <% end %>
-          <li class="divider"></li>
       </ul>
     </div>
   </div>
+
   <div id="stype-container">
-    <%= render :partial => "admins/subscription_list", :locals => {:subscription_type => @current_subscription_type} %>
+    <% if @current_subscription_type %>
+      <%= render :partial => "admins/subscription_list", :locals => {:subscription_type => @current_subscription_type} %>
+    <% end %>
   </div>
 <% end %>
 
