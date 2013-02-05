@@ -1,2 +1,13 @@
-Dear all,
-The meal subscription slot for <%= @s_type_next.month.strftime('%B %Y')%> is available.Please log on to <%= @url %> to subscribe for the meals.
+<h3>Dear All,</h3>
+
+<p>Meal Subscription slot for <%= month = @s_type_next.month.strftime('%B-%Y')%> is available. Please log on to <%= root_url() %> to subscribe for the meals.</p>
+
+<h3>Here are the details of the subscription type</h3>
+
+month: <%= month %><br/>
+No of Days: <%= @s_type_next.number_of_days %><br/>
+Amount per day: <%= @s_type_next.amount_per_day %><br/>
+Total Amount to be paid: <%= @s_type_next.amount_per_day * @s_type_next.number_of_days %><br/><br/>
+
+From<br/>
+Admin, Meals Planner.
