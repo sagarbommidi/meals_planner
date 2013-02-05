@@ -17,7 +17,6 @@
 		<h4>Want to transfer today's meal?</h4>  
 		<%= form_tag transfers_path(), :method => :post, :class => "form-horizontal modal-form", :remote => true do %>
       <%= hidden_field_tag :subscription_id, current_user.current_subscription.id %>
-      <%= hidden_field_tag :subscription_id, current_user.next_subscription.id %>
       <%= hidden_field_tag :lender_id, current_user.id %>
       <%= hidden_field_tag :date, Date.today %>
       <%= submit_tag "Transfer", :class => "btn btn-success" %>
