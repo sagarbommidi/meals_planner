@@ -1,21 +1,19 @@
 <div class = "container" >
-  <h4> Meals subscription status </h4>
+  <h4> Meals Subscription Status </h4>
   <div class = "well" id="subscription-container">
     <%= render :partial => "users/subscription_status" %>
   </div>
   <% if @current_subscription %>
-    <div id="transfer-container">
+    <div id="transfer-container" class = "well">
       <%= render :partial => "users/transfer_details" %>
     </div>
   <% end %>
   <h4> Today's Transfers  (<%= Date.today.strftime('%d %B %Y') %>)  </h4>
-  <div class = "well" >
+  <div id="today_transfer" class="well" >
     <% if DailyTransfer.todays_transfer.empty? %>
       <h5>Sorry ! there are no transfers today </h5>
     <% else %>
-      <div id="today_transfer" %>
         <%= render :partial => "users/todays_transfers" %>
-      </div>
     <% end %>
   </div>
 </div>

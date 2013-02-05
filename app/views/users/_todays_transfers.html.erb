@@ -17,7 +17,7 @@
         <% if current_user.has_currently_subscribed?  %>
           <td> You cannot Borrow </td>
         <% elsif current_user.has_borrowed_today? %>
-          <td> You already Borrowed</td>
+          <td> You have already Borrowed</td>
         <% else %>
           <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
               <%= submit_tag "Borrow", :class => "btn btn-success" %> 
@@ -26,7 +26,13 @@
         <% end %>
       <% else %>
         <td> Booked </td>
-        <td> <%= t.borrower_name %> </td>
+        <td> <%= t.borrower_name %>
+          <% if t.payment_status == false %>
+            (Not Paid) 
+          <% else %> 
+            (Paid) 
+          <% end %> 
+        </td>
       <% end %> 
     </tr>
   <% end %>

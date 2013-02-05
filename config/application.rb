@@ -63,5 +63,21 @@ module Meal
     # autoload lib modules
     config.autoload_paths += %W(#{config.root}/lib)
 
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+        :address              => "smtp.gmail.com",
+        :port                 => 587,
+        :domain               => 'pramati.com',
+        :authentication       => 'plain',
+        :user_name            => 'supraja.s@imaginea.com',
+        :password             => 'suprajas1991',
+        :openssl_verify_mode  => 'none',
+        :enable_starttls_auto => true  
+    }
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+
+
   end
 end

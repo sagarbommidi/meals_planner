@@ -10,7 +10,7 @@
       Your subscription is not yet confirmed!!!
     </div>
     <h5>Please pay  &#x20B9; <%= @next_subscription.total_amount %> to confirm your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%></h5>
-    <a class = "btn btn-success" href = "#" rel = "tooltip" title = "Please pay to Mr. Murari Rao" data-placement = "bottom" onclick ='alert("Please pay to Mr.Murari Rao")' > Pay by cash </a> 
+    <a class = "btn btn-success" href = "#" rel = "tooltip" title = "Please pay to Mr. Murari Rao" data-placement = "bottom"> Pay by cash </a> 
     <button class="btn btn-success"disabled>Pay Online</button>
   <% else %>
     <h5>Your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%> is active</h5>

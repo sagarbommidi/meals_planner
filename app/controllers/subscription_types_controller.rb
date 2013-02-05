@@ -4,6 +4,7 @@ class SubscriptionTypesController < ApplicationController
   def create
     @s_type = SubscriptionType.new(params[:subscription_type])
     @s_type.save
+    #UserMailer.new_subscription_type_email.deliver
     get_stypes
   end
 

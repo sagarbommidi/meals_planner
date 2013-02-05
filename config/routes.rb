@@ -26,4 +26,6 @@ Meal::Application.routes.draw do
   end
 
   match '/home' => "users#show"
+  match "/admin" => redirect("/admins/signin")
+  
 end
