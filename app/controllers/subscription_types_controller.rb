@@ -1,5 +1,5 @@
 class SubscriptionTypesController < ApplicationController
-  before_filter :authenticate_admin!, :only => [:filter_subscriptions]
+  before_filter :authenticate_admin!
 
   def create
     @s_type = SubscriptionType.new(params[:subscription_type])
