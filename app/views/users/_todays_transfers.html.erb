@@ -21,7 +21,7 @@
         <% else %>
           <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
               <%= submit_tag "Borrow", :class => "btn btn-success",:id=> "borrow-submit"%> 
-              <i id="borrow-spinner-button" class="icon-spinner icon-spin" style="display: none;"></i>
+              <%= image_tag "loading.gif", :id => "borrow-spinner-button", :style => "display: none;" %>
               <% end %>
           </td>
         <% end %>

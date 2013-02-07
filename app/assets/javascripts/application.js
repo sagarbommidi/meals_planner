@@ -22,44 +22,26 @@ $(document).ready(function(){
   });
 
   $("#subscribe-submit").click(function(){
-    $(this).attr("disabled", "true");
     $('#subscription-spinner-button').show();
-  })
+    $(this).attr("disabled", "true");
+    $("#new_subscription").submit();
+    return false;
+  });
 
   $("#received-payment-submit").live('click', function(){
     $('#received-payment-spinner-button').show();
     $(this).attr("disabled", "true");
-  })
+    $("#payment_recieved_form").submit();
+    return false;
+  });
 
   $("#borrow-submit").live('click', function(){
     $('#borrow-spinner-button').show();
     $(this).attr("disabled", "true");
-    console.log("returned false;");
-  })
+  });
 
 });
 
 $(function () {
   $("[rel='tooltip']").tooltip();
 });
-
-// $('#transfer-container').ajaxStart(function() {
-//   $('#transfer-button').disable();  
-//   $('#spinner-icon').show();
-//   _.delay(function(msg) { console.log(msg); }, 5000, 'Hello');
-// });
-// $('#transfer-container').ajaxComplete(function() {
-//   $('#spinner-icon').hide();
-// });
-
-// $('#subscription-container').ajaxStart(function() {
-//   alert("calling");
-//   return false;
-//   $('#transfer-button').disable();  
-//   $('#spinner-icon').show();
-//   _.delay(function(msg) { console.log(msg); }, 5000, 'Hello');
-// });
-// $('#subscription-container').ajaxComplete(function() {
-//   $('#spinner-icon').hide();
-// });
-

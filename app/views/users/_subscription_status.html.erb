@@ -22,7 +22,7 @@
     <%= f.hidden_field :total_amount, :value => @s_type_next.amount_per_day * @s_type_next.number_of_days %>
     <p> Total Amount: &#x20B9; <%= @s_type_next.amount_per_day * @s_type_next.number_of_days %> </p>
     <%= f.submit "Subscribe", :class => "btn btn-success", :id => "subscribe-submit" %>
-    <i id="subscription-spinner-button" class="icon-spinner icon-spinner" style="display: none;"></i>
+    <%= image_tag "loading.gif", :id => "subscription-spinner-button", :style => "display: none;" %>
   <% end %>
 <% else %>
   <h5> Sorry.. the planner is not ready with the subscription for <%= Date.today.next_month.strftime('%B %Y') %>  </h5> 

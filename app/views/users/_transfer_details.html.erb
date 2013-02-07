@@ -1,13 +1,13 @@
 <div>
   <% if current_user.transfered_today_meal? %>
     <div id = "update_payment">
-		<h4>You have transfered your meal for today...</h4>	
-      <% if current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == false %>
+  		<h4>You have transfered your meal for today...</h4>	
+      <% if current_user.get_todays_transfer.borrower_id.present? && current_user.get_todays_transfer.payment_status == false %>
         <b><%= current_user.get_borrower_name %></b> wants to borrow your meal for today.
-        <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
-          <%= submit_tag "Received Payment", :class => "btn btn-success", :id => "received-payment-submit" %> 
-          <i id="received-payment-spinner-button" class="icon-spinner icon-spin" style="display: none;"></i>
-          <% end %>
+        <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :style => "margin-top: 20px;", :id => "payment_recieved_form", :remote => true do %>
+          <%= submit_tag "Received Payment", :class => "btn btn-success", :id => "received-payment-submit" %>
+          <%= image_tag "loading.gif", :id => "received-payment-spinner-button", :style => "display: none;" %>
+        <% end %>
       <% elsif current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == true %>
           <b> Your meal has been transfered to <%= current_user.get_borrower_name %><b>
       <% else %>
@@ -24,5 +24,5 @@
       <% end %>
 	<% end %>
   <br/>
-  <%= link_to('View all my Transfers', transfers_path, :method => :get) %>  
+  <%= link_to('View all my Transfers', transfers_path, :method => :get) %>
 </div>
