@@ -8,9 +8,9 @@
         <th>Payment status</th>
       </tr>
     </thead>
-  <% current_user.daily_transfers.all.each do |dt| %>
+  <% current_user.daily_transfers.order("date DESC").all.each do |dt| %>
     <tr>
-      <td><%= dt.date  %></td>
+      <td><%= dt.date.strftime('%d %B %Y')  %></td>
       <% if dt.booking_status == false %>
         <td> None </td>
       <% else %>
@@ -25,3 +25,4 @@
     <% end %>
   </table>
 </div>
+<%= link_to('Back to Home page', home_path()) %>

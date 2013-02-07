@@ -20,7 +20,8 @@
           <td> You have already Borrowed</td>
         <% else %>
           <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
-              <%= submit_tag "Borrow", :class => "btn btn-success" %> 
+              <%= submit_tag "Borrow", :class => "btn btn-success",:id=> "borrow-submit"%> 
+              <i id="borrow-spinner-button" class="icon-spinner icon-spin" style="display: none;"></i>
               <% end %>
           </td>
         <% end %>

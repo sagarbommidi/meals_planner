@@ -7,7 +7,7 @@
     <a class="brand" href="#" style = "margin-left:10px"> MEALS PLANNER </a>
     <div class="nav-collapse collapse">
       <ul class="nav" style = "width:1035px;">
-        <li><%= link_to('Home', user_path(current_user)) %></li>
+        <li><%= link_to('Home', home_path()) %></li>
         <li><%= link_to('Subscriptions', subscriptions_path, :method => :get) %></li>
         <li><%= link_to('Transfers', transfers_path, :method => :get) %></li>
         <li class='dropdown' style = "float:right;"> 

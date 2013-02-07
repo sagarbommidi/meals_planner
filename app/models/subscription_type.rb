@@ -36,7 +36,7 @@ class SubscriptionType < ActiveRecord::Base
   end
 
   # 'generate_subscription_type' method will be useful to generate the subscription type 
-  # for the next month by schedular.
+  # for the next month by scheduler.
   def self.generate_subscription_type
     unless next_subscription_type
       date = Date.today.next_month.at_beginning_of_month

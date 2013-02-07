@@ -5,7 +5,8 @@
       <% if current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == false %>
         <b><%= current_user.get_borrower_name %></b> wants to borrow your meal for today.
         <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
-          <%= submit_tag "Received Payment", :class => "btn btn-success" %> 
+          <%= submit_tag "Received Payment", :class => "btn btn-success", :id => "received-payment-submit" %> 
+          <i id="received-payment-spinner-button" class="icon-spinner icon-spin" style="display: none;"></i>
           <% end %>
       <% elsif current_user.get_todays_transfer.borrower_id.present? &&current_user.get_todays_transfer.payment_status == true %>
           <b> Your meal has been transfered to <%= current_user.get_borrower_name %><b>
@@ -19,7 +20,9 @@
       <%= hidden_field_tag :subscription_id, current_user.current_subscription.id %>
       <%= hidden_field_tag :lender_id, current_user.id %>
       <%= hidden_field_tag :date, Date.today %>
-      <%= submit_tag "Transfer", :class => "btn btn-success" %>
+      <%= submit_tag "Transfer", :id => "transfer-button" ,:class => "btn btn-success" %> 
       <% end %>
 	<% end %>
+  <br/>
+  <%= link_to('View all my Transfers', transfers_path, :method => :get) %>  
 </div>

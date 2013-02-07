@@ -9,7 +9,7 @@
         <th>Payment Status</th>
       </tr>
     </thead>
-  <% current_user.subscriptions.all.each do |subs| %>
+  <% current_user.subscriptions.order("created_at DESC").all.each do |subs| %>
     <tr>
       <td><%= subs.subscription_type.month.strftime('%B %Y') %></td>
       <td><span>&#x20B9;</span><%= subs.total_amount%></td>
@@ -22,3 +22,4 @@
     <% end %>
   </table>
 </div>
+<%= link_to('Back to Home page', home_path()) %>
