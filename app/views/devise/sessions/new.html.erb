@@ -1,8 +1,9 @@
 <div id="login-box">
-  <h1 align="center">
+  <h1>
     <img src="<%= asset_path 'pramati.gif' %>" style = "vertical-align: inherit;"/> 
     Meals Planner    
   </h1>
+  <div id = "signin-form">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
     <h3>Sign in </h3>   
     <%= f.text_field :login , :placeholder => "Enter your LDAP username", :class => "input-block-level" %>
@@ -11,4 +12,6 @@
     <a href="javascript:void(0)" class="help-title" rel="tooltip" title="<%= help_text %>" data-placement="right"> Why Meals Planner?
     </a>    
   <% end %>
+  </div>
+  <img  id = "screenshot" src="<%= asset_path 'meals_planner_2.png' %>" width = "650px"/>
 </div>
