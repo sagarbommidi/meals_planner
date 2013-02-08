@@ -1,4 +1,5 @@
 class TransfersController < ApplicationController
+  
   def create
     @transfer = current_user.daily_transfers.create(date: params[:date], subscription_id: params[:subscription_id])
     @transfer.save
@@ -15,6 +16,12 @@ class TransfersController < ApplicationController
     @transfer = DailyTransfer.find(params[:id])
     @transfer.update_attributes(:payment_status => true)
     UserMailer.delay.payment_acceptance_email(current_user,@transfer)
+  end
+
+  def cancel_borrow
+    params[:daily_transfer] = {:borrower_id => nil, :borrower_name => :nil, :booking_status => false}
+    @transfer = DailyTransfer.find(params[:id])
+    @transfer.update_attributes(params[:daily_transfer])
   end
 
 end

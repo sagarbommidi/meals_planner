@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208055314) do
+ActiveRecord::Schema.define(:version => 20130208113131) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",               :default => "", :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130208055314) do
     t.string   "login",               :default => "", :null => false
     t.string   "firstname"
     t.string   "fullname"
+    t.integer  "phone"
   end
 
   add_index "admins", ["login"], :name => "index_admins_on_login", :unique => true
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20130208055314) do
     t.integer  "subscription_id"
     t.integer  "dailytransfer_id"
     t.string   "fullname"
+    t.integer  "phone"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

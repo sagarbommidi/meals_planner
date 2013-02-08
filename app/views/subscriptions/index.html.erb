@@ -12,7 +12,7 @@
   <% current_user.subscriptions.order("created_at DESC").all.each do |subs| %>
     <tr>
       <td><%= subs.subscription_type.month.strftime('%B %Y') %></td>
-      <td><span>&#x20B9;</span><%= subs.total_amount%></td>
+      <td><span>&#x20B9;</span><%= subs.total_amount%>/-</td>
       <% if subs.payment_status == false %>
         <td> Not paid </td>
         <% else %>

@@ -19,22 +19,24 @@
         <% elsif current_user.has_borrowed_today? %>
           <td> You have already Borrowed</td>
         <% else %>
-          <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :remote => true do %>
-              <%= submit_tag "Borrow", :class => "btn btn-success",:id=> "borrow-submit"%> 
+          <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :id => "borrow_form",:remote => true do %>
+              <%= submit_tag "Borrow", :class => "btn btn-success",:id=> "borrow-submit", :confirm => "Are you sure you want to borrow?"%> 
               <%= image_tag "loading.gif", :id => "borrow-spinner-button", :style => "display: none;" %>
               <% end %>
           </td>
         <% end %>
       <% else %>
         <td> Booked </td>
-        <td> <%= t.borrower_name %>
-          <% if t.payment_status == false %>
-            (Not Paid) 
-          <% else %> 
-            (Paid) 
-          <% end %> 
+        <td> <%= t.borrower_name %> 
+          <% if t.borrower_name = current_user.fullname && t.payment_status == false %>
+            <%= form_tag cancel_borrow_transfer_path(t), :method => :put, :class => "form-horizontal modal-form" ,:remote => true do %>
+              <%= submit_tag "Cancel", :class => "btn btn-danger", :confirm => "Are you sure you want to cancel?" %>
+            <% end %>
+          <% end %>
         </td>
       <% end %> 
     </tr>
   <% end %>
 </table>
+
+

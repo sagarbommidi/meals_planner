@@ -12,7 +12,7 @@
       <td><%= holiday.description %></td>
       <td>
         <%= link_to "Edit", edit_holiday_path(holiday), :class => "btn btn-success", :remote => true  %>
-        <%= link_to "Delete", holiday_path(holiday), :method => :delete, :remote => true, :confirm => "Are you sure want to dalete?", :class => "btn btn-danger" %>
+        <%= link_to "Delete", holiday_path(holiday), :method => :delete, :remote => true, :confirm => "Are you sure want to delete?", :class => "btn btn-danger" %>
       </td>
     </tr>
     <tr id='<%= "holiday-#{holiday.id}-form" %>' style="display: none;" class="holiday-form">

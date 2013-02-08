@@ -1,9 +1,5 @@
+require 'getdetails'
 class User < ActiveRecord::Base
-  require 'workingdays'
-
-  before_save :get_ldap_email
-  before_save :get_ldap_firstname
-  before_save :get_ldap_fullname
 
   has_and_belongs_to_many :subscription_types
   has_many :subscriptions, :dependent => :destroy
@@ -15,7 +11,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :password, :password_confirmation, :remember_me, :firstname
 
-
+  before_save :get_ldap_email
+  before_save :get_ldap_firstname
+  before_save :get_ldap_fullname
 
   def has_currently_subscribed?
     self.current_subscription.present?
@@ -53,20 +51,5 @@ class User < ActiveRecord::Base
    transfer = DailyTransfer.where(:borrower_id => self.id, :date => Date.today).first
    transfer.nil? ? false : true
   end
-
-
-  private
-
-  def get_ldap_email
-    self.email = Devise::LdapAdapter.get_ldap_param(self.login, "mail")
-  end
-
-  def get_ldap_firstname
-    self.firstname = Devise::LdapAdapter.get_ldap_param(self.login, "firstname")
-  end
-
-  def get_ldap_fullname
-    self.fullname = Devise::LdapAdapter.get_ldap_param(self.login, "cn")
-  end
-
+  
 end

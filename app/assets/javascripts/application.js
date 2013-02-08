@@ -38,6 +38,8 @@ $(document).ready(function(){
   $("#borrow-submit").live('click', function(){
     $('#borrow-spinner-button').show();
     $(this).attr("disabled", "true");
+    $('#borrow_form').submit();
+    return false;
   });
 
 });

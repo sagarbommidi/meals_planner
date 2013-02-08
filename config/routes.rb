@@ -22,6 +22,7 @@ Meal::Application.routes.draw do
   resources :transfers do
     member do
       put :update_payment_status
+      put :cancel_borrow
     end
   end
   devise_scope :user do

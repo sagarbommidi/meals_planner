@@ -1,5 +1,4 @@
 class Subscription < ActiveRecord::Base
-  require 'workingdays'
 	belongs_to :user
 	belongs_to :subscription_type
 	has_many :daily_transfers, :dependent => :destroy

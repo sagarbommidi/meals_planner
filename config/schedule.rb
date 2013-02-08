@@ -1,11 +1,11 @@
 
 set :output, "log/schedular.log"
 
-every '* 9 25 * *' do
+every '* 9 22 * *' do
   runner "SubscriptionType.send_reminder"
-end
+end 
 
-every '* 9 27 * *' do
+every '* 9 25 * *' do
   runner "SubscriptionType.generate_subscription_type"
 end
 
