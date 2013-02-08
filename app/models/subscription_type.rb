@@ -43,6 +43,7 @@ class SubscriptionType < ActiveRecord::Base
       working_days = self.working_days_in_month(date.to_s)
       self.create(:month => date, :number_of_days => working_days)
       # UserMailer.new_subscription_type_email.deliver
+      #UserMailer.delay.new_subscription_type_email
     end
   end
 

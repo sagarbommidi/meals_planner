@@ -9,7 +9,7 @@ class SubscriptionsController < ApplicationController
     @s_type_current = SubscriptionType.current_subscription_type
     @current_subscription = current_user.current_subscription if current_user.has_currently_subscribed?
     @next_subscription = current_user.next_subscription || Subscription.new
-    UserMailer.subscription_email(current_user).deliver
+    UserMailer.delay.subscription_email(current_user)
   end
 
   def index

@@ -30,6 +30,8 @@ gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ld
 gem 'fastercsv'
 
 gem 'whenever', :require => false
+gem 'delayed_job_active_record' 
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
