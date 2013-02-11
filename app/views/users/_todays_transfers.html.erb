@@ -28,7 +28,7 @@
       <% else %>
         <td> Booked </td>
         <td> <%= t.borrower_name %> 
-          <% if t.borrower_name = current_user.fullname && t.payment_status == false %>
+          <% if t.borrower_id == current_user.id && t.payment_status == false %>
             <%= form_tag cancel_borrow_transfer_path(t), :method => :put, :class => "form-horizontal modal-form" ,:remote => true do %>
               <%= submit_tag "Cancel", :class => "btn btn-danger", :confirm => "Are you sure you want to cancel?" %>
             <% end %>
