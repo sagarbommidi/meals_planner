@@ -1,42 +1,5 @@
-<% if !current_user.has_currently_subscribed? %>
-  <h6> You can borrow any of the available meals transferred by the subscribers </h6>
-<% end %>
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Lender</th>
-      <th>Booking Status</th> 
-      <th>Borrowed By </th>  
-    </tr>
-  </thead>
-  <% DailyTransfer.todays_transfer.order("booking_status").all.each do |t| %>
-    <tr>
-      <td><%= t.user.fullname %></td>
-      <% if t.booking_status == false %>
-        <td> Available </td>
-        <% if current_user.has_currently_subscribed?  %>
-          <td> You cannot Borrow </td>
-        <% elsif current_user.has_borrowed_today? %>
-          <td> You have already Borrowed</td>
-        <% else %>
-          <td><%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :id => "borrow_form",:remote => true do %>
-              <%= submit_tag "Borrow", :class => "btn btn-success",:id=> "borrow-submit", :confirm => "Are you sure you want to borrow?"%> 
-              <%= image_tag "loading.gif", :id => "borrow-spinner-button", :style => "display: none;" %>
-              <% end %>
-          </td>
-        <% end %>
-      <% else %>
-        <td> Booked </td>
-        <td> <%= t.borrower_name %> 
-          <% if t.borrower_name = current_user.fullname && t.payment_status == false %>
-            <%= form_tag cancel_borrow_transfer_path(t), :method => :put, :class => "form-horizontal modal-form" ,:remote => true do %>
-              <%= submit_tag "Cancel", :class => "btn btn-danger", :confirm => "Are you sure you want to cancel?" %>
-            <% end %>
-          <% end %>
-        </td>
-      <% end %> 
-    </tr>
-  <% end %>
-</table>
+<div style = "float:right; margin-bottom: 20px;">
+  <%= link_to('Show Available Slots',"#", :id =>'available-slots-button') %>
+</div>
 
-
+<%= render :partial => "users/transfers_index", :locals => {:transfers => DailyTransfer.todays_transfer.all} %>

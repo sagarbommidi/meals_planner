@@ -2,10 +2,11 @@ class TransfersController < ApplicationController
   
   def create
     @transfer = current_user.daily_transfers.create(date: params[:date], subscription_id: params[:subscription_id])
+    @current_subscription = current_user.current_subscription if current_user.has_currently_subscribed?
     @transfer.save
   end
 
-  def update
+  def update    
     params[:daily_transfer] = {:borrower_id => current_user.id, :borrower_name => current_user.fullname, :booking_status => true}
     @transfer = DailyTransfer.find(params[:id])
     @transfer.update_attributes(params[:daily_transfer])

@@ -1,31 +1,48 @@
-<% if @current_subscription %> 
-  <h5>Your subscription for <%= @current_subscription.subscription_type.month.strftime('%B %Y')%> is active</h5>
-<% else %>
-  <h5> You haven't subscribed for <%= Date.today.strftime('%B %Y') %> </h5>
-<% end %>
-<% if !@next_subscription.new_record? %>
-  <% if @next_subscription.payment_status == false %>
-    <div class="alert alert-block">
-      <p> <strong>  Warning!!! </strong>Your subscription for <strong><%= @next_subscription.subscription_type.month.strftime('%B %Y')%> </strong> is not yet confirmed!!! </p>
+<div class = "row-fluid">
+  <div class = "span6">
+    <div class = "well" style = "height:175px;">
+      <h5> <u>Current Subscription</u> (<%= @s_type_current.month.strftime('%b %Y') %>) </h5>
+      <% if @current_subscription %> 
+        <% if @current_subscription.payment_status == true %>
+          <h5>Your subscription is active</h5>
+        <% elsif @current_subscription.payment_status == false %>
+          <div class="alert alert-error">
+            <p> <strong>  Warning!!! </strong>Your subscription is not yet confirmed!!! </p>
+          </div>
+          <h5>Please <a href = "javascript:void(0)" rel = "tooltip" title = "Pay by cash to Mr. Murari Rao" data-placement = "bottom" > Pay </a>  &#x20B9;<%= @current_subscription.total_amount %>/- immediately to confirm your subscription </h5>
+          <%= link_to('Cancel Subscription', subscription_path(@current_subscription),:method => :delete, :class => "btn btn-danger", :confirm => "Are you sure you want to cancel?") %>
+        <% end %>
+      <% else %>
+        <h5> You haven't subscribed for <%= Date.today.strftime('%B %Y') %> </h5>
+      <% end %>
     </div>
-    <h5>Please pay  &#x20B9;<%= @next_subscription.total_amount %>/- to confirm your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%></h5>
-    <a class = "btn btn-success" href = "#" rel = "tooltip" title = "Please pay to Mr. Murari Rao" data-placement = "bottom"> Pay by cash </a> 
-    <button class="btn btn-success" disabled>Pay Online</button> 
-  <% else %>
-    <h5>Your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%> is active</h5>
-  <% end %>
-<% elsif @s_type_next %>
-  <h5> Subscribe for <%= Date.today.next_month.strftime('%B %Y') %> </h5>
-  <%= form_for (@next_subscription), :html => {:method => :post, :class => "form-horizontal modal-form", :remote => true} do |f| %>
-    <%= f.hidden_field :subscription_type_id, :value => @s_type_next.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :total_amount, :value => @s_type_next.amount_per_day * @s_type_next.number_of_days %>
-    <p> Total Amount: &#x20B9;<%= @s_type_next.amount_per_day * @s_type_next.number_of_days %>/- </p>
-    <%= f.submit "Subscribe", :class => "btn btn-success", :id => "subscribe-submit" %>
-    <%= image_tag "loading.gif", :id => "subscription-spinner-button", :style => "display: none;" %>
-  <% end %>
-<% else %>
-  <h5> Sorry.. the planner is not ready with the subscription for <%= Date.today.next_month.strftime('%B %Y') %>  </h5> 
-<% end %> <br/> 
-<%= link_to('View all my Subscriptions', subscriptions_path, :method => :get) %> 
-
+  </div>
+  <div class = "span6">
+    <div class = "well" style = "height:175px;">
+      <h5><u> Subscription for next month</u> (<%= @s_type_next.month.strftime('%b %Y') %>)  </h5>
+      <% if !@next_subscription.new_record? %>
+        <% if @next_subscription.payment_status == false %>
+          <div class="alert alert-block">
+            <p> <strong>  Warning!!! </strong>Your subscription is not yet confirmed!!! </p>
+          </div>
+          <h5>Please <a href = "javascript:void(0)" rel = "tooltip" title = "Pay by cash to Mr. Murari Rao" data-placement = "bottom" > Pay </a>  &#x20B9;<%= @next_subscription.total_amount %>/- to confirm your subscription </h5>
+          <%= link_to('Cancel Subscription', subscription_path(@next_subscription),:method => :delete, :class => "btn btn-danger", :confirm => "Are you sure you want to cancel?") %>
+        <% else %>
+          <h5>Your subscription for <%= @next_subscription.subscription_type.month.strftime('%B %Y')%> is active</h5>
+        <% end %>
+      <% elsif @s_type_next %>
+        <h5> Subscribe for <%= Date.today.next_month.strftime('%B %Y') %> </h5>
+        <%= form_for (@next_subscription), :html => {:method => :post, :class => "form-horizontal modal-form", :remote => true} do |f| %>
+          <%= f.hidden_field :subscription_type_id, :value => @s_type_next.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :total_amount, :value => @s_type_next.amount_per_day * @s_type_next.number_of_days %>
+          <p> Total Amount: &#x20B9;<%= @s_type_next.amount_per_day * @s_type_next.number_of_days %>/- </p>
+          <%= f.submit "Subscribe", :class => "btn btn-success", :id => "subscribe-submit" %>
+          <%= image_tag "loading.gif", :id => "subscription-spinner-button", :style => "display: none;" %>
+        <% end %>
+      <% else %>
+        <h5> Sorry.. the planner is not ready with the subscription for <%= Date.today.next_month.strftime('%B %Y') %>  </h5> 
+      <% end %> <br/> 
+    </div>
+  </div>
+</div>

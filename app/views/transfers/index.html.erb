@@ -10,7 +10,7 @@
     </thead>
   <% current_user.daily_transfers.order("date DESC").all.each do |dt| %>
     <tr>
-      <td><%= dt.date.strftime('%d %B %Y')  %></td>
+      <td><%= dt.date %></td>
       <% if dt.booking_status == false %>
         <td> None </td>
       <% else %>

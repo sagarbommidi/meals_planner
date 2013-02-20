@@ -22,5 +22,11 @@ class SubscriptionsController < ApplicationController
     subscription.update_attributes(:payment_status => true) unless subscription.blank?
     @s_type = SubscriptionType.find(params[:s_type_id])
   end
-  
+
+  def destroy
+    subscription = Subscription.find(params[:id])
+    subscription.destroy
+    flash[:notice] = "Subscription Cancelled"
+    redirect_to home_path
+  end
 end

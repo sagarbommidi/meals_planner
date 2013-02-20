@@ -1,19 +1,30 @@
 <div class = "container" >
-  <h4> Meals Subscription Status </h4>
-  <div class = "well" id="subscription-container">
+  <h4> Subscriptions   <div style = "float:right;">
+    <%= link_to('View All My Subscriptions', subscriptions_path, :method => :get, :class => "btn") %>
+  </div> </h4> <br/>
+
+  <div id="subscription-container">
     <%= render :partial => "users/subscription_status" %>
   </div>
-  <% if @current_subscription %>
-    <div id="transfer-container" class = "well">
-      <%= render :partial => "users/transfer_details" %>
+  
+  <h4> Transfers 
+  <div style= "float:right; margin-left:10px;">  
+      <%= link_to(' View All My Transfers', transfers_path, :method => :get, :class => "btn") %>
+    </div> 
+    <div id = "transfer-details-button" style = "float:right;">
+      <% if @current_subscription && current_user.has_paid? %> 
+        <%= render :partial => "users/transfer_details" %>  
+      <% end %>
     </div>
-  <% end %>
-  <h4> Today's Transfers  (<%= Date.today.strftime('%d %B %Y') %>)  </h4>
+    
+  </h4> 
+  <br/>
+  
   <div id="today_transfer" class="well" >
     <% if DailyTransfer.todays_transfer.empty? %>
-      <h5>Sorry ! there are no transfers today </h5>
+      <h5>Sorry! there are no available meals today </h5>
     <% else %>
-        <%= render :partial => "users/todays_transfers" %>
+      <%= render :partial => "transfers/transfers_content" %>
     <% end %>
   </div>
 </div>

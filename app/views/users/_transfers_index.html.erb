@@ -1,0 +1,52 @@
+<%= Date.today.strftime("%d %B %Y") %>
+
+<table class="table table-bordered table-hover">
+
+  <thead>
+    <tr>
+      <th>Lender</th>
+      <th>Borrowed By </th>  
+      <th>Action</th> 
+    </tr>
+  </thead>
+
+  <% transfers.each do |t| %>  
+    <tr>
+      <td><%= lender_name(t) %></td>
+      <td><%= booking_status(t) %></td>
+      <% if t.payment_status == true %>
+        <td>Recieved Amount</td>
+      <% elsif @current_subscription && current_user.has_paid?  %>
+        <% if t.lender_id == current_user.id && t.booking_status == true %>
+          <% if t.payment_status == false %>
+            <td>
+              <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :id => "payment_recieved_form", :remote => true do %>
+                <%= submit_tag "Received Payment", :class => "btn btn-success", :id => "received-payment-submit" %>
+                <%= image_tag "loading.gif", :id => "received-payment-spinner-button", :style => "display: none;" %> 
+              <% end %>
+            </td>
+          <% end %>
+        <% else %>
+          <td>Yet to be booked </td>
+        <% end %>
+      <% elsif current_user.has_borrowed_today? %>
+        <% if t.borrower_id == current_user.id && t.payment_status == false %>
+          <td>  
+            <%= form_tag cancel_borrow_transfer_path(t), :method => :put, :class => "form-horizontal modal-form" ,:remote => true do %>
+                <%= submit_tag "Cancel", :class => "btn btn-danger", :confirm => "Are you sure you want to cancel?" %>
+            <% end %> 
+          </td>
+        <% else %>
+          <td> You have already Borrowed</td>
+        <% end %>
+      <% else %>
+        <td>
+          <%= form_tag transfer_path(t), :method => :put, :class => "form-horizontal modal-form", :id => "borrow_form",:remote => true do %>
+            <%= submit_tag "Borrow", :class => "btn btn-success",:id=> "borrow-submit", :confirm => "Are you sure you want to borrow?"%> 
+            <%= image_tag "loading.gif", :id => "borrow-spinner-button", :style => "display: none;" %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>  
+</table>

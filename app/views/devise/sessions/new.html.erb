@@ -8,10 +8,12 @@
     <h3>Sign in </h3>   
     <%= f.text_field :login , :placeholder => "Enter your LDAP username", :class => "input-block-level" %>
     <%= f.password_field :password, :placeholder => "Enter your LDAP password", :class => "input-block-level" %>
-    <%= f.submit "Sign in" ,:class => "btn btn-success" %>
-    <a href="javascript:void(0)" class="help-title" rel="tooltip" title="<%= help_text %>" data-placement="right"> Why Meals Planner?
-    </a>    
+    <div style="width: 225px;">
+      <%= f.submit "Sign in" ,:class => "btn btn-success" %>
+      <a href="javascript:void(0)" class="help-title" rel="tooltip" title="<%= help_text %>" data-placement="right">Why Meals Planner?
+    </a>
+    </div>        
   <% end %>
   </div>
-  <img  id = "screenshot" src="<%= asset_path 'meals_planner_2.png' %>"/>
+  <img  id = "screenshot" src="<%= asset_path 'meals_7.png' %>"/>
 </div>

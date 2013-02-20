@@ -1,5 +1,5 @@
 <% if @transfer.valid? %>
-<% content = escape_javascript(render :partial => 'users/todays_transfers') %>
+<% content = escape_javascript(render :partial => 'transfers/transfers_content') %>
 $('#today_transfer').html('<%= content %>')
 <% else %>
 $('#today_transfer').prepend('<p>Failed to borrow...</p>')

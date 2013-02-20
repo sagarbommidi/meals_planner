@@ -1,4 +1,3 @@
-<% content = escape_javascript(render :partial => 'users/transfer_details') %>
-$('#transfer-container').html('<%= content %>')
-<% contentnew = escape_javascript(render :partial => 'users/todays_transfers') %>
+$('#transfer-button').hide()
+<% contentnew = escape_javascript(render :partial => 'transfers/transfers_content') %>
 $('#today_transfer').html('<%= contentnew %>')

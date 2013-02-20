@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   before_save :get_ldap_email
   before_save :get_ldap_firstname
   before_save :get_ldap_fullname
+  before_save :get_ldap_phone
 
   def has_currently_subscribed?
     self.current_subscription.present?
@@ -38,7 +39,7 @@ class User < ActiveRecord::Base
   def transfered_today_meal?
     self.daily_transfers.find_by_date(Date.today).present?
   end
-
+  
   def get_todays_transfer
     self.daily_transfers.find_by_date(Date.today)
   end
@@ -52,4 +53,8 @@ class User < ActiveRecord::Base
    transfer.nil? ? false : true
   end
   
+  def has_paid?
+    self.current_subscription.payment_status
+  end
+
 end

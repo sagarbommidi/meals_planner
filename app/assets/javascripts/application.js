@@ -21,6 +21,12 @@ $(document).ready(function(){
     dateFormat: 'dd/mm/yy'
   });
 
+  $('.transfer-date-field').datepicker({ 
+    dateFormat: 'dd/mm/yy',
+    minDate: 0,
+    maxDate: +10
+  });
+
   $("#subscribe-submit").click(function(){
     $('#subscription-spinner-button').show();
     $(this).attr("disabled", "true");
@@ -40,6 +46,25 @@ $(document).ready(function(){
     $(this).attr("disabled", "true");
     $('#borrow_form').submit();
     return false;
+  });
+
+  // $("transfer-button").click(function() {
+  //   var html = "";
+  //   html += '<div class = "transfer-wrapper">
+  //     <input type = "text" class = "transfer-date-field" name ="transfer_date" />
+  //     <input type = "submit" class = "btn btn-success" id = "transfer-button" val = "Transfer" />
+  //   </div>'
+  //   $('#transfer-container').append(html);  
+  // });
+
+  $('#all-slots-button').live('click', function(){
+    $("#available-slots-container").hide();
+    $("#all-slots-container").show();
+  });
+
+  $('#available-slots-button').live('click', function(){
+    $("#all-slots-container").hide()
+    $("#available-slots-container").show();
   });
 
 });
