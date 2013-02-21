@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208113131) do
+ActiveRecord::Schema.define(:version => 20130221083035) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",               :default => "", :null => false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20130208113131) do
   create_table "subscription_types", :force => true do |t|
     t.date     "month"
     t.integer  "number_of_days"
-    t.integer  "amount_per_day", :default => 45
+    t.integer  "amount_per_day", :default => 50
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end

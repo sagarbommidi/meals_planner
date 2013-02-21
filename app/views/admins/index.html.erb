@@ -1,22 +1,18 @@
-<div class = "container">
-  <h3>Welcome To Meals Planer</h3>
-  <p>This is Admin section for Meals-Planner, where the admin can track all the list of SubscriptionTypes, all the list of users who subscribed for a particular Subscription type.</p>
-</div>
-
+<h4> Subscription Statistics</h4>
 <% if @stypes.blank? %>
   <div class="well">
     <strong>
-      No Subscription types are available. Please create one subscription type 
+      No Subscription slots are available. Please create one subscription slot
       <%= link_to "here", subscription_types_path() %>
     </strong>
   </div>
 <% else %>
   <div class="well">
-    <strong>Select Subscription Type in the select box to get the statistics.</strong>
+    <strong>Select Subscription Slot in the select box to get the statistics.</strong>
     <div class="btn-group pull-right">
       <a class="btn dropdown-toggle btn-success stype-select-container" data-toggle="dropdown" href="#">
-        <span id="stype-title">Subscription Type</span>
         <span class="caret pull-right"></span>
+        <span id="stype-title">Choose Slot</span>
       </a>
       <ul class="dropdown-menu">
         <% @stypes.each do |type| %>
@@ -36,9 +32,9 @@
 <% end %>
 
 
-<p>
-  <span class="label label-info">Info</span> Today's Transfers  (<%= I18n.localize(Date.today, :format => '%d %B %Y') %>)
-</p>
+<h4>
+  Today's Transfers  (<%= I18n.localize(Date.today, :format => '%d %B %Y') %>)
+</h4>
 <%= render :partial => "admins/today_transfers" %>
 
 

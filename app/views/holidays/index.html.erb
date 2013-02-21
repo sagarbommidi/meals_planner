@@ -1,15 +1,15 @@
-<p>
-  <span class="label label-info">Info</span> Add new Holiday
-</p>
+<h4>
+   Add new Holiday
+</h4>
 <div class="well">
   <a href="#addHoliday" data-toggle="modal" class="btn btn-success">Add Holiday</a>
   <div style="float: right;">
   </div>
 </div>
 
-<p style="margin-top: 50px;">
-  <span class="label label-info">Info</span> List of Holidays
-</p>
+<h4 style="margin-top: 50px;">
+   List of Holidays
+</h4>
 
 <div id="holiday-container">
   <%= render :partial => "holidays/index_list", :locals => {:holidays => @holidays} %>

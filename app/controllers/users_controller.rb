@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_filter :authenticate_user!
 	def show
 		@s_type_next = SubscriptionType.next_subscription_type
 		@s_type_current = SubscriptionType.current_subscription_type

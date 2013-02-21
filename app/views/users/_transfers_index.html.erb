@@ -20,7 +20,7 @@
         <% if t.lender_id == current_user.id && t.booking_status == true %>
           <% if t.payment_status == false %>
             <td>
-              <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form", :id => "payment_recieved_form", :remote => true do %>
+              <%= form_tag update_payment_status_transfer_path(current_user.get_todays_transfer), :method => :put, :class => "form-horizontal modal-form"   , :id => "payment_recieved_form", :remote => true do %>
                 <%= submit_tag "Received Payment", :class => "btn btn-success", :id => "received-payment-submit" %>
                 <%= image_tag "loading.gif", :id => "received-payment-spinner-button", :style => "display: none;" %> 
               <% end %>
